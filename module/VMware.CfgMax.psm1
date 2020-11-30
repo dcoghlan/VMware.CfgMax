@@ -276,7 +276,7 @@ function Get-CfgMaxProduct {
     Retrieves a product matching the Id provided.
 
     .NOTES
-    Version:        1.0.0
+    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -368,7 +368,7 @@ function Get-CfgMaxRelease {
     Retrieves a specific release matching the Id provided.
 
     .NOTES
-    Version:        1.0.0
+    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -460,7 +460,7 @@ function Get-CfgMaxCategory {
     Retrieves a category matching the exact category provided.
 
     .NOTES
-    Version:        1.0.0
+    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -498,7 +498,7 @@ function Get-CfgMaxCategory {
             New-CfgMaxCategoryItem -Item $item
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'Category') {
-            $item = $response | Where-Object { $_.category -eq $Category.trim() }
+            $item = $response | Where-Object { $_.category.trim() -eq $Category.trim() }
             New-CfgMaxCategoryItem -Item $item
         }
         else {
@@ -546,7 +546,7 @@ function Get-CfgMaxLimits {
     Retrieve the limits for the NSX-T 3.1.0 Load Balancing Category only
     
     .NOTES
-    Version:        1.0.0
+    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -683,7 +683,7 @@ function Compare-CfgMaxLimits {
     Compare the limits between NSX-T Data Center releases 2.5.1, 2.5.2, 3.0.0, and 3.1.1 and display the entries in a nicely formatted table
 
     .NOTES
-    Version:        1.0.0
+    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
