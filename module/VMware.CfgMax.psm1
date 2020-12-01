@@ -276,7 +276,6 @@ function Get-CfgMaxProduct {
     Retrieves a product matching the Id provided.
 
     .NOTES
-    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -368,7 +367,6 @@ function Get-CfgMaxRelease {
     Retrieves a specific release matching the Id provided.
 
     .NOTES
-    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -460,7 +458,6 @@ function Get-CfgMaxCategory {
     Retrieves a category matching the exact category provided.
 
     .NOTES
-    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -546,7 +543,6 @@ function Get-CfgMaxLimits {
     Retrieve the limits for the NSX-T 3.1.0 Load Balancing Category only
     
     .NOTES
-    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -683,7 +679,6 @@ function Compare-CfgMaxLimits {
     Compare the limits between NSX-T Data Center releases 2.5.1, 2.5.2, 3.0.0, and 3.1.1 and display the entries in a nicely formatted table
 
     .NOTES
-    Version:        1.0.1
     Author(s):      Dale Coghlan
     Twitter:        @DaleCoghlan
     Github:         dcoghlan        
@@ -726,7 +721,6 @@ function Compare-CfgMaxLimits {
     
     if ($response) {
         Write-Debug ($response | ConvertTo-Json -Depth 100)
-        ($response | ConvertTo-Json -Depth 100) | Out-File -FilePath compare.json
 
         $releaseOrderIndexMap = Get-CfgMaxCompareIndexMap -Product $Product -ComparedReleases $response.releases
         Write-Verbose "$($releaseOrderIndexMap | ConvertTo-Json -Depth 100)"
