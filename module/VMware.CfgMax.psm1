@@ -1,8 +1,8 @@
 
-$Script:urlBase = "https://vsantoolsapi.vmware.com"
+$Script:urlBase = "https://configmax-service.esp.vmware.com"
 $Script:CfgMaxHeaders = New-Object 'System.Collections.Generic.Dictionary[String,object]'
-$Script:CfgMaxHeaders.Add("Origin", "https://configmax.vmware.com")
-$Script:CfgMaxHeaders.Add("Referer", "https://configmax.vmware.com/guest")
+$Script:CfgMaxHeaders.Add("Origin", "https://configmax-service.esp.vmware.com")
+$Script:CfgMaxHeaders.Add("Referer", "https://configmax-service.esp.vmware.com/guest")
 $Script:CfgMaxHeaders.Add("Content-Type", "application/json")
 
 function Convert-CfgMaxRawLimit {
@@ -295,7 +295,7 @@ function Get-CfgMaxProduct {
     )
 
     $baseUri = New-Object System.UriBuilder($Script:urlBase)
-    $baseUri.path = "/configmax/menutree/v1/vmwareproducts"
+    $baseUri.path = "/limits/menutree/v1/vmwareproducts"
     $baseUri.Query = Add-UriQueryParam -QueryObject $baseUri.Query -QueryString "hasconfigmaxset=true"
     try {
         $response = Invoke-RestMethod -Uri $baseUri.Uri -Headers $Script:CfgMaxHeaders
@@ -387,7 +387,7 @@ function Get-CfgMaxRelease {
         [int]$Id
     )
     $baseUri = New-Object System.UriBuilder($Script:urlBase)
-    $baseUri.path = "/configmax/menutree/v1/vmwareproducts/$($product.id)/releases"
+    $baseUri.path = "/limits/menutree/v1/vmwareproducts/$($product.id)/releases"
     $baseUri.Query = Add-UriQueryParam -QueryObject $baseUri.Query -QueryString "hasconfigmaxset=true", "ispublished=true"
     try {
         $response = Invoke-RestMethod -Uri $baseUri.Uri -Headers $Script:CfgMaxHeaders
@@ -479,7 +479,7 @@ function Get-CfgMaxCategory {
         [string]$Category
     )
     $baseUri = New-Object System.UriBuilder($Script:urlBase)
-    $baseUri.path = "/configmax/menutree/v1/vmwareproducts/$($Release.ProductId)/releases/$($Release.Id)/categories"
+    $baseUri.path = "/limits/menutree/v1/vmwareproducts/$($Release.ProductId)/releases/$($Release.Id)/categories"
 
     try {
         $response = Invoke-RestMethod -Uri $baseUri.Uri -Headers $Script:CfgMaxHeaders
@@ -566,7 +566,7 @@ function Get-CfgMaxLimits {
     # process {
 
     $baseUri = New-Object System.UriBuilder($Script:urlBase)
-    $baseUri.path = "/configmax/managelimits/v1/vmwareproducts/$($Product.Id)/releases/$($Release.Id)/categories/attributes"
+    $baseUri.path = "/limits/managelimits/v1/vmwareproducts/$($Product.Id)/releases/$($Release.Id)/categories/attributes"
     $baseUri.Query = Add-UriQueryParam -QueryObject $baseUri.Query -QueryString "showall=false", "isTotalCount=false"
 
     $body = New-CfgMaxCategorySpec -ProductId $Product.Id -ReleaseId $Release.Id
@@ -702,7 +702,7 @@ function Compare-CfgMaxLimits {
     )
 
     $baseUri = New-Object System.UriBuilder($Script:urlBase)
-    $baseUri.path = "/configmax/comparelimits/v1/vmwareproducts/$($Product.Id)/releases/$($Release.Id)/configmaxset/comparision"
+    $baseUri.path = "/limits/comparelimits/v1/vmwareproducts/$($Product.Id)/releases/$($Release.Id)/configmaxset/comparision"
     $body = @{
         "vmwareProductId" = $Product.Id;
         "releaseIds"      = New-Object System.Collections.ArrayList
